@@ -1,4 +1,5 @@
 #include <BSAnimationGraphManager.h>
+#include <Havok/BShkbAnimationGraph.h>
 #include <Havok/hkbBehaviorGraph.h>
 #include <Havok/hkbStateMachine.h>
 #include <ModCompat/MasterBehaviorVars.h>
@@ -159,6 +160,10 @@ void MasterBehaviorVars::patch(Actor* apActor, BSAnimationGraphManager* pManager
                 uint64_t aKey = pManager->GetDescriptorKey();
 
                 // register the patch to AnimationGraphDescriptorManager
+                AnimationGraphDescriptorManager::Builder s_build(AnimationGraphDescriptorManager::Get(), aKey,
+                                                                 *animationDescriptor);
+                AnimationGraphDescriptorManager::Builder::Builder(AnimationGraphDescriptorManager::Get(), aKey,
+                                                                  *animationDescriptor);
                 new AnimationGraphDescriptorManager::Builder(AnimationGraphDescriptorManager::Get(), aKey,
                                                              *animationDescriptor);
 
